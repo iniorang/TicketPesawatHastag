@@ -13,69 +13,62 @@
 </head>
 <?php
     include('database.php');
-    $id=@$_GET['id'];
-    $id=filter_var($id,FILTER_SANITIZE_STRIPPED);
-    if(isset($id)&&$id!=''){
-        $edit=$database->prepare('SELECT * FROM ticket WHERE id=:id');
-        $edit->bindValue(':id',$id,PDO::PARAM_INT);
-        try{
-            $edit->execute();
-        }catch(Exception $error){
-            if($error){
-
-            }
-        }
-        $isi=$edit->fetch(PDO::FETCH_ASSOC);
-    }
-    ?>
+?>
 <body>
 <div class="card-header">
     <h1>Edit Jadwal</h1>
         </div>
-    <div class="container">
+        <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card mt-5">
                     <div class="card-body">
-                        <form action="edit.php" method="POST">
-                            <div class="form-group mb-3">
-                                <label for="">Maskapai</label>
-                                <input type="text" name="maskapai" class="form-control" value="<?=@$isi['maskapai']?>">
+                        <?php
+                        include('database.php');
+                        if(isset($_GET['id'])){
+                            $perjalanan = $_GET['id'];
+
+                            $edit = 'SELECT * FROM jadwal WHERE id=:jadwal_id';
+                            $state=$database->prepare($edit);
+                            $data=[':jadwal_id' => $perjalanan];
+                            $state->execute($data);
+                            $hasil = $state->fetch(PDO::FETCH_ASSOC);
+                        }
+                        ?>
+                        <form action="update.php" method="POST">
+                            <div class="form-group mb-3"> 
+                                <label>Maskapai</label>
+                                <input type="text" name="maskapai" value="<?=$hasil['maskapai']?>" class="form-control">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="">Waktu Keberangkatan</label>
-                                <input type="time" name="waktuberangkat" class="form-control" value="<?=@$isi['jberangkat']?>">
+                                <label>Asal</label>
+                                <input type="text" name="asal" value="<?=$hasil['asal']?>" class="form-control">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="">Tanggal Keberangkatan</label>
-                                <input type="date" name="berangkat" class="form-control" value="<?=@$isi['berangkat']?>">
+                                <label>Waktu & Tanggal Keberangkatan</label>
+                                <input type="date" name="tgl_berangkat" value="<?=$hasil['tgl_berangkat']?>" class="form-control">
+                                <input type="time" name="jam_berangkat" value="<?=$hasil['jam_berangkat']?>" class="form-control">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="">Asal Tempat</label>
-                                <input type="text" name="asal" class="form-control" value="<?=@$isi['asal']?>">
+                                <label>Tujuan</label>
+                                <input type="text" name="tujuan" value="<?=$hasil['tujuan']?>" class="form-control">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="">Waktu datang</label>
-                                <input type="time" name="waktudatang" class="form-control" value="<?=@$isi['jdatang']?>">
+                                <label>Waktu & Tanggal Kedatangan</label>
+                                <input type="date" name="tgl_datang" value="<?=$hasil['tgl_datang']?>" class="form-control">
+                                <input type="time" name="jam_datang" value="<?=$hasil['jam_datang']?>" class="form-control">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="">Tanggal datang</label>
-                                <input type="date" name="datang" class="form-control" value="<?=@$isi['datang']?>">
+                                <label>Harga</label>
+                                <input type="text" name="harga" value="<?=$hasil['harga']?>" class="form-control">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="">Tempat Tujuan</label>
-                                <input type="text" name="tujuan" class="form-control" value="<?=@$isi['tujuan']?>">
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="">Harga</label>
-                                <input type="text" name="harga" class="form-control" value="<?=@$isi['harga']?>">
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="">Kursi Tersedia</label>
-                                <input type="text" name="kursi" class="form-control" value="<?=@$isi['kursi']?>">
+                                <label>Kursi</label>
+                                <input type="text" name="kursi" value="<?=$hasil['kursi']?>" class="form-control">
                             </div>
                             <div class="form-group mb-3">
                                 <button type="submit" name="save" value="save" class="btn btn-primary">Simpan</button>
+                                <input type="hidden" name="id" value="<?$hasil['id']?>">
                             </div>
                         </form>
                     </div>

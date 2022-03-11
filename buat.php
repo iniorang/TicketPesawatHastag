@@ -1,10 +1,10 @@
 <?php
     include ('database.php');
     $maskapai=@$_POST['maskapai'];
-    $berangkat=@$_POST['berangkat'];
-    $jamnbrk=@$_POST['waktuberangkat'];
-    $datang=@$_POST['datang'];
-    $jamdtn=@$_POST['waktudatang'];
+    $tglberangkat=@$_POST['tgl_berangkat'];
+    $jamberangkat=@$_POST['jam_berangkat'];
+    $tgldatang=@$_POST['tgl_datang'];
+    $jamdatang=@$_POST['jam_datang'];
     $harga=@$_POST['harga'];
     $tujuan=@$_POST['tujuan'];
     $asal=@$_POST['asal'];
@@ -12,27 +12,27 @@
     $save=@$_POST['save'];
 
     $maskapai=filter_var($maskapai,FILTER_SANITIZE_STRIPPED);
-    $berangkat=filter_var($berangkat,FILTER_SANITIZE_STRIPPED);
-    $jamnbrk=filter_var($jamnbrk,FILTER_SANITIZE_STRIPPED);
-    $datang=filter_var($datang,FILTER_SANITIZE_STRIPPED);
-    $jamdtn=filter_var($jamdtn,FILTER_SANITIZE_STRIPPED);
+    $tglberangkat=filter_var($tglberangkat,FILTER_SANITIZE_STRIPPED);
+    $jamberangkat=filter_var($jamberangkat,FILTER_SANITIZE_STRIPPED);
+    $tgldatang=filter_var($tgldatang,FILTER_SANITIZE_STRIPPED);
+    $jamdatang=filter_var($jamdatang,FILTER_SANITIZE_STRIPPED);
     $harga=filter_var($harga,FILTER_SANITIZE_STRIPPED);
     $asal=filter_var($asal,FILTER_SANITIZE_STRIPPED);
     $tujuan=filter_var($tujuan,FILTER_SANITIZE_STRIPPED);
     $kursi=filter_var($kursi,FILTER_SANITIZE_STRIPPED);
     $save=filter_var($save,FILTER_SANITIZE_STRIPPED);
 
-    $date1=strtotime($berangkat);
-    $date2=strtotime($datang);
+    $date1=strtotime($tglberangkat);
+    $date2=strtotime($tgldatang);
 
-    if($maskapai!=''&&$berangkat!=''&&$asal!=''&&$tujuan!=''&&$jamnbrk!=''&&$datang!=''&&$jamdtn!=''&&$harga!=''&&$kursi!=''&&$save="save"){
-        $tambah=$database->prepare('INSERT INTO jadwal(`maskapai`,`asal`,`berangkat`,`jberangkat`,`tujuan`,`datang`,`jdatang`,`harga`,`kursi`) VALUES (:maskapai,:berangkat,:waktuberangkat,:datang,:waktudatang,:harga,:kursi,:asal,:tujuan)');
+    if($maskapai!=''&&$tglberangkat!=''&&$asal!=''&&$tujuan!=''&&$jamberangkat!=''&&$tgldatang!=''&&$jamdatang!=''&&$harga!=''&&$kursi!=''&&$save="save"){
+        $tambah=$database->prepare('INSERT INTO jadwal(`maskapai`,`asal`,`tgl_berangkat`,`jam_berangkat`,`tujuan`,`tgl_datang`,`jam_datang`,`harga`,`kursi`) VALUES (:maskapai,:asal,:tglberangkat,:waktuberangkat,:tujuan,:tgldatang,:waktudatang,:harga,:kursi)');
 
         $tambah->bindValue(':maskapai',$maskapai,PDO::PARAM_STR);
-        $tambah->bindValue(':waktuberangkat',$jamnbrk,PDO::PARAM_STR);
-        $tambah->bindValue(':berangkat',$berangkat,PDO::PARAM_STR);
-        $tambah->bindValue(':waktudatang',$jamdtn,PDO::PARAM_STR);
-        $tambah->bindValue(':datang',$datang,PDO::PARAM_STR);
+        $tambah->bindValue(':waktuberangkat',$jamberangkat,PDO::PARAM_STR);
+        $tambah->bindValue(':tglberangkat',$tglberangkat,PDO::PARAM_STR);
+        $tambah->bindValue(':waktudatang',$jamdatang,PDO::PARAM_STR);
+        $tambah->bindValue(':tgldatang',$tgldatang,PDO::PARAM_STR);
         $tambah->bindValue(':asal',$asal,PDO::PARAM_STR);
         $tambah->bindValue(':tujuan',$tujuan,PDO::PARAM_STR);
         $tambah->bindValue(':harga',$harga,PDO::PARAM_INT);

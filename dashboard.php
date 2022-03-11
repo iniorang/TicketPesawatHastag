@@ -8,6 +8,9 @@
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <link href="plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="plugin/fontawesome/css/all.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link href="style.css">
     <script src='main.js'></script>
 </head>
@@ -27,40 +30,34 @@
                 <div class="card mt-5">
                     <div class="card-body">
                         <form action="buat.php" method="POST">
-                            <div class="form-group mb-3">
-                                <label for="">Maskapai</label>
+                            <div class="form-group mb-3"> 
+                                <label>Maskapai</label>
                                 <input type="text" name="maskapai" class="form-control">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="">Waktu Keberangkatan</label>
-                                <input type="time" name="waktuberangkat" class="form-control">
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="">Tanggal Keberangkatan</label>
-                                <input type="date" name="berangkat" class="form-control">
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="">Asal Tempat</label>
+                                <label>Asal</label>
                                 <input type="text" name="asal" class="form-control">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="">Waktu datang</label>
-                                <input type="time" name="waktudatang" class="form-control">
+                                <label>Waktu & Tanggal Keberangkatan</label>
+                                <input type="date" name="tgl_berangkat" class="form-control">
+                                <input type="time" name="jam_berangkat" class="form-control">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="">Tanggal datang</label>
-                                <input type="date" name="datang" class="form-control">
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="">Tempat Tujuan</label>
+                                <label>Tujuan</label>
                                 <input type="text" name="tujuan" class="form-control">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="">Harga</label>
+                                <label>Waktu & Tanggal Kedatangan</label>
+                                <input type="date" name="tgl_datang" class="form-control">
+                                <input type="time" name="jam_datang" class="form-control">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label>Harga</label>
                                 <input type="text" name="harga" class="form-control">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="">Kursi Tersedia</label>
+                                <label>Kursi</label>
                                 <input type="text" name="kursi" class="form-control">
                             </div>
                             <div class="form-group mb-3">
@@ -99,14 +96,15 @@
                     <tr>
                         <td><?=$list['id']?></td>
                         <td><?=$list['maskapai']?></td>
-                        <td><?=$list['berangkat']?><br>(<?=$list['asal']?>)</td>
-                        <td><?=$list['jberangkat']?></td>
-                        <td><?=$list['datang']?><br>(<?=$list['tujuan']?>)</td>
-                        <td><?=$list['jdatang']?></td>
+                        <td><?=$list['tgl_berangkat']?><br>(<?=$list['asal']?>)</td>
+                        <td><?=$list['jam_berangkat']?></td>
+                        <td><?=$list['tgl_datang']?><br>(<?=$list['tujuan']?>)</td>
+                        <td><?=$list['jam_datang']?></td>
                         <td>Rp<?=$list['harga']?></td>
                         <td><?=$list['kursi']?></td>
                         <td>
                         <a href="delet.php?id=<?=$list['id']?>" class="trash"> <i class="fas fa-trash-alt" style="padding:8px;"></i></a>
+                        <a href="editview.php?id=<?=$list['id']?>" class="edit"> <i class="fa-solid fa-pencil" style="padding:8px;"></i></a>
                         </button>
                         </td>
                     </tr>

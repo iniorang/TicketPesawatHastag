@@ -80,8 +80,8 @@ foreach($data as $jadwal):
                         <tbody>
                             <td><?=$jadwal['asal']?></td>
                             <td><?=$jadwal['tujuan']?></td>
-                            <td><?=$jadwal['berangkat']?><br><?=$jadwal['jberangkat']?></td>
-                            <td><?=$jadwal['datang']?><br><?=$jadwal['jdatang']?></td>
+                            <td><?=$jadwal['tgl_berangkat']?><br><?=$jadwal['jam_berangkat']?></td>
+                            <td><?=$jadwal['tgl_datang']?><br><?=$jadwal['jam_datang']?></td>
                         </tbody>
                     </table>
                 </div>
