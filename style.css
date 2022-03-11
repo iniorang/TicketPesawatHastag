@@ -1,0 +1,25 @@
+.card1{
+    margin-top: 10px;
+    width: 1222px;
+    height: 279px;
+    border-color: #0f7fff;
+    border-style: solid;
+    box-shadow: 1px 1px 3px;
+    border-radius: 48px;
+}
+#nama-maskapai{
+    height: 28px;
+    font-size: 40px;
+    color: #000000;
+    margin-left: 40px;
+    margin-top: 39px;
+}
+#bar{
+    margin-top: 90px;
+    margin-left: 29px;
+}
+.vl {
+    border-left: 1px solid gray;
+    height: 100px;
+    top: 0;
+  }
